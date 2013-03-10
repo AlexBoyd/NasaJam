@@ -4,7 +4,10 @@ using System.Collections;
 public class GravityBody : MonoBehaviour {
 	
 	public GravityManager GM;
+	
 	public Vector3 Velocity = Vector3.zero;
+	public Vector3 RotVelocity = Vector3.zero;
+	
 	public float Mass;
 	
 	// Use this for initialization
@@ -23,5 +26,6 @@ public class GravityBody : MonoBehaviour {
 		Velocity.z = 0;
 		if(Mass == 0){Debug.LogWarning(this.gameObject.name + "Gravity body Mass is equal to zero!");}
 		this.transform.position += Velocity*Time.deltaTime;
+		this.transform.Rotate(RotVelocity*Time.deltaTime,Space.Self);
 	}
 }

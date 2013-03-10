@@ -4,8 +4,14 @@ using System.Collections;
 public class PlayerDriveInput : MonoBehaviour {
 	
 	public GravityBody PlayerGravityBody;
+	
 	Vector3 ThrustVector = Vector3.zero;
-	public float ThrustStrength = 10;
+	Vector3 RotVector = Vector3.zero;
+	
+	public float RotationAccelerationSpeed;
+	public float MaxRotationSpeed;
+	public float ThrustStrength;
+	
 	// Use this for initialization
 	void Start () {
 		PlayerGravityBody = this.gameObject.GetComponent<GravityBody>();
@@ -20,29 +26,39 @@ public class PlayerDriveInput : MonoBehaviour {
 	{
 		if(Input.GetKey(KeyCode.W))
 		{
-			Thrust(0,1);
+			Thrust(1);
 		}
 		
 		if(Input.GetKey(KeyCode.A))
 		{
-			Thrust(-1,0);
+			RotThrust(1);
 		}
 		
 		if(Input.GetKey(KeyCode.S))
 		{
-			Thrust(0,-1);
+			Thrust(-1);
 		}
 		
 		if(Input.GetKey(KeyCode.D))
 		{
-			Thrust(1,0);
+			RotThrust(-1);
 		}
 	}
 	
-	public void Thrust(float xForce, float yForce)
+	public void Thrust(float ForwardForce)
 	{
-		Debug.Log("Thrusting");
-		ThrustVector.x = xForce;ThrustVector.y = yForce;
+		
+		//ThrustVector = this.transform.forward * ForwardForce;
+		ThrustVector = Vector3.right * ForwardForce;
+		ThrustVector = Quaternion.Euler(0, 0, this.transform.rotation.eulerAngles.z) * ThrustVector;
+		Debug.Log(ThrustVector);
 		PlayerGravityBody.Velocity += (ThrustVector*ThrustStrength)*Time.deltaTime;
+	}
+	
+	public void RotThrust(float z)
+	{
+		RotVector.z = z;
+		PlayerGravityBody.RotVelocity += (RotVector*RotationAccelerationSpeed)*Time.deltaTime;
+		PlayerGravityBody.RotVelocity.z = Mathf.Clamp(PlayerGravityBody.RotVelocity.z,-MaxRotationSpeed,MaxRotationSpeed);
 	}
 }
