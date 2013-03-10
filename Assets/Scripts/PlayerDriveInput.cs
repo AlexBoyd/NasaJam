@@ -13,6 +13,8 @@ public class PlayerDriveInput : MonoBehaviour {
 	public float ThrustStrength;
 	
 	public ParticleSystem ForwardThrustEmitter;
+	public ParticleSystem ClockwiseThrustEmitter;
+	public ParticleSystem CounterClockwiseThrustEmitter;
 	
 	// Use this for initialization
 	void Start () {
@@ -22,6 +24,9 @@ public class PlayerDriveInput : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		ForwardThrustEmitter.enableEmission = false;
+		ClockwiseThrustEmitter.enableEmission = false;
+		CounterClockwiseThrustEmitter.enableEmission = false;
+		
 		GetWASD();
 	}
 	
@@ -35,6 +40,7 @@ public class PlayerDriveInput : MonoBehaviour {
 		if(Input.GetKey(KeyCode.A))
 		{
 			RotThrust(1);
+			CounterClockwiseThrustEmitter.enableEmission = true;
 		}
 		
 		if(Input.GetKey(KeyCode.S))
@@ -45,6 +51,7 @@ public class PlayerDriveInput : MonoBehaviour {
 		if(Input.GetKey(KeyCode.D))
 		{
 			RotThrust(-1);
+			ClockwiseThrustEmitter.enableEmission = true;
 		}
 	}
 	
@@ -61,6 +68,7 @@ public class PlayerDriveInput : MonoBehaviour {
 	
 	public void RotThrust(float z)
 	{
+		
 		RotVector.z = z;
 		PlayerGravityBody.RotVelocity += (RotVector*RotationAccelerationSpeed)*Time.deltaTime;
 		PlayerGravityBody.RotVelocity.z = Mathf.Clamp(PlayerGravityBody.RotVelocity.z,-MaxRotationSpeed,MaxRotationSpeed);
