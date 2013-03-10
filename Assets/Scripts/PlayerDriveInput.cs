@@ -12,6 +12,8 @@ public class PlayerDriveInput : MonoBehaviour {
 	public float MaxRotationSpeed;
 	public float ThrustStrength;
 	
+	public ParticleSystem ForwardThrustEmitter;
+	
 	// Use this for initialization
 	void Start () {
 		PlayerGravityBody = this.gameObject.GetComponent<GravityBody>();
@@ -19,6 +21,7 @@ public class PlayerDriveInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		ForwardThrustEmitter.enableEmission = false;
 		GetWASD();
 	}
 	
@@ -36,7 +39,7 @@ public class PlayerDriveInput : MonoBehaviour {
 		
 		if(Input.GetKey(KeyCode.S))
 		{
-			Thrust(-1);
+			//Thrust(-1);
 		}
 		
 		if(Input.GetKey(KeyCode.D))
@@ -47,6 +50,7 @@ public class PlayerDriveInput : MonoBehaviour {
 	
 	public void Thrust(float ForwardForce)
 	{
+		ForwardThrustEmitter.enableEmission = true;
 		
 		//ThrustVector = this.transform.forward * ForwardForce;
 		ThrustVector = Vector3.right * ForwardForce;

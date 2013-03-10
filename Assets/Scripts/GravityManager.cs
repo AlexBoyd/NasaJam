@@ -5,10 +5,11 @@ public class GravityManager : MonoBehaviour {
 	
 	public ArrayList GravityBodyList = new ArrayList();
 	public ArrayList GravityAttractorList = new ArrayList();
+	public PerformanceManager PM;
 	
 	// Use this for initialization
 	void Start () {
-	
+		PM = this.gameObject.GetComponent<PerformanceManager>();
 	}
 	
 	// Update is called once per frame

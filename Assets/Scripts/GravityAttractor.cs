@@ -23,4 +23,13 @@ public class GravityAttractor : MonoBehaviour {
 		GB.Velocity +=  -(Vector3.Normalize(GB.transform.position - this.transform.position) * PullStrength)/GB.Mass;
 
 	}
+	
+	public Vector3 Pull(Vector3 Position, float Mass)
+	{
+		Vector3 ReturnMod = Vector3.zero;
+		
+		ReturnMod = -(Vector3.Normalize(Position - this.transform.position) * PullStrength)/Mass;
+		
+		return ReturnMod;
+	}
 }
