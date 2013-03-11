@@ -38,23 +38,18 @@ public class PlayerDriveInput : MonoBehaviour {
 	
 	public void GetWASD()
 	{
-		if(Input.GetKey(KeyCode.W))
+		if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
 		{
 			Thrust(1);
 		}
 		
-		if(Input.GetKey(KeyCode.A))
+		if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
 			RotThrust(1);
 			CounterClockwiseThrustEmitter.enableEmission = true;
 		}
 		
-		if(Input.GetKey(KeyCode.S))
-		{
-			//Thrust(-1);
-		}
-		
-		if(Input.GetKey(KeyCode.D))
+		if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
 			RotThrust(-1);
 			ClockwiseThrustEmitter.enableEmission = true;
