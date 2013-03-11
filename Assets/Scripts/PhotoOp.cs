@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PhotoOp : MonoBehaviour {
 	
-	float PhotoAngle;
+	public float PhotoAngle;
 	
 	public GameObject SuccessContent;
 	
@@ -11,7 +11,7 @@ public class PhotoOp : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-	
+		this.transform.Rotate(new Vector3(0,0,PhotoAngle));
 	}
 	
 	// Update is called once per frame

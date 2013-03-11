@@ -27,7 +27,8 @@ public class PhotoTakerMachine : MonoBehaviour {
 			if(CurrentPhotoRegion != null)
 			{
 				//Compare Angle	
-				Debug.Log("Good photo");
+				ScorePhoto();
+				
 			}
 			else
 			{
@@ -53,5 +54,18 @@ public class PhotoTakerMachine : MonoBehaviour {
 		{
 			CurrentPhotoRegion = null;	
 		}
+	}
+	
+	void ScorePhoto()
+	{
+		float Score = 100;
+		Score -= (this.transform.rotation.eulerAngles.z - 180) - CurrentPhotoRegion.transform.rotation.eulerAngles.z;
+		Score = Mathf.Clamp(Score,0,100);
+		
+		if(Score > 65)
+		{
+			CurrentPhotoRegion.SendMessage("UnlockPhoto");
+		}
+		
 	}
 }
