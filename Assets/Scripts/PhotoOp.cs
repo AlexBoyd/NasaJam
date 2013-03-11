@@ -5,6 +5,9 @@ public class PhotoOp : MonoBehaviour {
 	
 	float PhotoAngle;
 	
+	public GameObject SuccessContent;
+	
+	 
 	
 	// Use this for initialization
 	void Start () {
@@ -14,5 +17,10 @@ public class PhotoOp : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+	
+	void OnGUI()
+	{
+		
 	}
 }
