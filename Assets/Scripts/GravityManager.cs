@@ -6,6 +6,8 @@ public class GravityManager : MonoBehaviour {
 	public ArrayList GravityBodyList = new ArrayList();
 	public ArrayList GravityAttractorList = new ArrayList();
 	public PerformanceManager PM;
+	public float FallOffPower;
+
 	
 	// Use this for initialization
 	void Start () {

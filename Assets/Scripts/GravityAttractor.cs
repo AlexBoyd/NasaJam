@@ -21,14 +21,14 @@ public class GravityAttractor : MonoBehaviour {
 	{
 		if(PullStrength == 0){Debug.LogWarning(this.gameObject.name + "Gravity Attractor Pull Strength is equal to zero!");}
 		GB.Velocity +=  -(	(Vector3.Normalize(GB.transform.position - this.transform.position) * PullStrength)/GB.Mass)	
-									/Vector3.Distance(this.transform.position,GB.transform.position);
+									/Mathf.Pow(Vector3.Distance(this.transform.position,GB.transform.position),GM.FallOffPower);
 	}
 	
-	public Vector3 Pull(Vector3 Position, float Mass)
+	public Vector3 Pull(Vector3 position, float mass)
 	{
 		Vector3 ReturnMod = Vector3.zero;
 		
-		ReturnMod = -((Vector3.Normalize(Position - this.transform.position) * PullStrength)/Mass)/Vector3.Distance(this.transform.position,Position);
+		ReturnMod = -((Vector3.Normalize(position - this.transform.position) * PullStrength/mass)/Mathf.Pow(Vector3.Distance(this.transform.position,position),GM.FallOffPower));
 		
 		return ReturnMod;
 	}

@@ -46,6 +46,7 @@ public class GravityBody : MonoBehaviour {
 	{
 		int ProjectionResolution = 1;
 		float ProjectionLength = 300;
+		MyLR.SetWidth(transform.localScale.x, transform.localScale.x);
 		
 		MyLR.SetVertexCount(ProjectionResolution);
 		
